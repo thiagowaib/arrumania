@@ -7,10 +7,12 @@ public class MovimentacaoCarro : MonoBehaviour
 
 {
     // Declarations
-    public float speed = 7.5f;
-    public float rotationSensibility = 0.5f;
-    private float horizontalAxis;
-    private float verticalAxis;
+    public float speed = 7.5f;                // Player Speed
+    public float rotationSensibility = 0.5f;  // Player Rotation Sensibility
+    private float horizontalAxis;     // Horizontal Axis of the Scene
+    private float verticalAxis;       // Vertical Axis of the Scene
+    public Camera playerCamera;              // Player Camera
+    public float playerCameraRotSpeed = 2f;  // Camera Rotation
 
     void Start()
     {
@@ -24,13 +26,13 @@ public class MovimentacaoCarro : MonoBehaviour
         if(Input.GetKey(KeyCode.W))
         {
             // Translate forward
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(Vector3.forward * -speed * Time.deltaTime);
         }
         // 'S':
         else if(Input.GetKey(KeyCode.S))
         {
             // Translate backwards
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            transform.Translate(Vector3.back * -speed * Time.deltaTime);
         }
         // 'A':
         if(Input.GetKey(KeyCode.A))
@@ -45,11 +47,24 @@ public class MovimentacaoCarro : MonoBehaviour
             transform.Rotate(0, rotationSensibility, 0);
         }
 
-        // Ao apertar a barra de apagar
+        // [Backspace]
         if(Input.GetKey(KeyCode.Backspace)) {
             // Reset Scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+
+
+        if(Input.GetMouseButton(0))
+        {
+            playerCamera.transform.RotateAround(transform.position, 
+                                            playerCamera.transform.up,
+                                            -Input.GetAxis("Mouse X")*playerCameraRotSpeed);
+
+            playerCamera.transform.RotateAround(transform.position, 
+                                            playerCamera.transform.right,
+                                            -Input.GetAxis("Mouse Y")*playerCameraRotSpeed);
+        } 
     }
 }
 
