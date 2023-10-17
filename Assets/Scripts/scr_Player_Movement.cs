@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class MovimentacaoCarro : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 
 {
     // Declarations
@@ -11,8 +11,6 @@ public class MovimentacaoCarro : MonoBehaviour
     public float rotationSensibility = 0.5f;  // Player Rotation Sensibility
     private float horizontalAxis;     // Horizontal Axis of the Scene
     private float verticalAxis;       // Vertical Axis of the Scene
-    public Camera playerCamera;              // Player Camera
-    public float playerCameraRotSpeed = 2f;  // Camera Rotation
 
     void Start()
     {
@@ -20,6 +18,8 @@ public class MovimentacaoCarro : MonoBehaviour
         horizontalAxis = Input.GetAxis("Horizontal");
         verticalAxis   = Input.GetAxis("Vertical");
     }
+
+
     void Update()
     {
         // 'W':
@@ -52,19 +52,6 @@ public class MovimentacaoCarro : MonoBehaviour
             // Reset Scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-
-
-        if(Input.GetMouseButton(0))
-        {
-            playerCamera.transform.RotateAround(transform.position, 
-                                            playerCamera.transform.up,
-                                            -Input.GetAxis("Mouse X")*playerCameraRotSpeed);
-
-            playerCamera.transform.RotateAround(transform.position, 
-                                            playerCamera.transform.right,
-                                            -Input.GetAxis("Mouse Y")*playerCameraRotSpeed);
-        } 
     }
 }
 
