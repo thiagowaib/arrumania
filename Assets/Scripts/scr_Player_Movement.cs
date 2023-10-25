@@ -23,25 +23,25 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         // 'W':
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             // Translate forward
             transform.Translate(Vector3.forward * -speed * Time.deltaTime);
         }
         // 'S':
-        else if(Input.GetKey(KeyCode.S))
+        else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // Translate backwards
             transform.Translate(Vector3.back * -speed * Time.deltaTime);
         }
         // 'A':
-        if(Input.GetKey(KeyCode.A))
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // Rotate counter-clockwise
             transform.Rotate(0, -rotationSensibility, 0);
         }
         // 'D':
-        else if(Input.GetKey(KeyCode.D))
+        else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // Rotate clockwise
             transform.Rotate(0, rotationSensibility, 0);
