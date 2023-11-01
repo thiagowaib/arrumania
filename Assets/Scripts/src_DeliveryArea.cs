@@ -12,6 +12,7 @@ public class src_DeliveryArea : MonoBehaviour
     public GameObject VictoryCamera;
     public GameObject FailureCamera;
     public GameObject PlayerCamera;
+    public GameObject MenuCamera;
     public GameObject Timer;
     public GameObject SoundPlayer;
     private AudioSource SoundSource;
@@ -72,6 +73,7 @@ public class src_DeliveryArea : MonoBehaviour
             SoundSource.Play ();
             VictoryCamera.GetComponent<Camera>().enabled = (true);
             PlayerCamera.GetComponent<Camera>().enabled = (false);
+            MenuCamera.GetComponent<Camera>().enabled = (false);
             FailureCamera.GetComponent<Camera>().enabled = (false);
         } else if(id == 3) { // Failure 
             SoundSource.clip = LoseSound;
@@ -79,14 +81,21 @@ public class src_DeliveryArea : MonoBehaviour
             SoundSource.Play ();
             FailureCamera.GetComponent<Camera>().enabled = (true);
             PlayerCamera.GetComponent<Camera>().enabled = (false);
+            MenuCamera.GetComponent<Camera>().enabled = (false);
             VictoryCamera.GetComponent<Camera>().enabled = (false);
-        } else { // Player Camera
+        } else if(id == 1){ // Player Camera
             SoundSource.clip = MusicSound;
             SoundSource.volume = 1f;
             SoundSource.Play ();
             PlayerCamera.GetComponent<Camera>().enabled = (true);
             VictoryCamera.GetComponent<Camera>().enabled = (false);
+            MenuCamera.GetComponent<Camera>().enabled = (false);
             FailureCamera.GetComponent<Camera>().enabled = (false);
+        } else { // Menu Camera
+            MenuCamera.GetComponent<Camera>().enabled = (true);
+            VictoryCamera.GetComponent<Camera>().enabled = (false);
+            FailureCamera.GetComponent<Camera>().enabled = (false);
+            PlayerCamera.GetComponent<Camera>().enabled = (false);
         }
     }
 

@@ -38,13 +38,13 @@ public class Player_Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // Rotate counter-clockwise
-            transform.Rotate(0, -rotationSensibility, 0);
+            transform.Rotate(0, -rotationSensibility * Time.deltaTime, 0);
         }
         // 'D':
         else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // Rotate clockwise
-            transform.Rotate(0, rotationSensibility, 0);
+            transform.Rotate(0, rotationSensibility * Time.deltaTime, 0);
         }
 
         // [Backspace]
