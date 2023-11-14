@@ -18,6 +18,7 @@ public class src_DeliveryArea : MonoBehaviour
     private AudioSource SoundSource;
     public AudioClip WinSound;
     public AudioClip MusicSound;
+    public AudioClip MenuSound;
     public AudioClip LoseSound;
     public AudioClip CollectSound;
     public AudioClip UnCollectSound;
@@ -29,7 +30,7 @@ public class src_DeliveryArea : MonoBehaviour
         gameOver = false;
         SoundSource = SoundPlayer.GetComponent<AudioSource>();
         UICounter.GetComponent<TextMesh>().text = "Organização: "+deliveryScore+"/"+deliveryTarget;
-        ChangeCamera(1);
+        ChangeCamera(0);
         InvokeRepeating("CheckTimeout", 0, 0.75f);
     }
 
@@ -65,7 +66,7 @@ public class src_DeliveryArea : MonoBehaviour
         }
     }
 
-    private void ChangeCamera(int id = 1)
+    public void ChangeCamera(int id = 1)
     {
         if(id == 2) { // Sucess
             SoundSource.clip = WinSound;
@@ -92,6 +93,9 @@ public class src_DeliveryArea : MonoBehaviour
             MenuCamera.GetComponent<Camera>().enabled = (false);
             FailureCamera.GetComponent<Camera>().enabled = (false);
         } else { // Menu Camera
+            SoundSource.clip = MenuSound;
+            SoundSource.volume = 1f;
+            SoundSource.Play ();
             MenuCamera.GetComponent<Camera>().enabled = (true);
             VictoryCamera.GetComponent<Camera>().enabled = (false);
             FailureCamera.GetComponent<Camera>().enabled = (false);

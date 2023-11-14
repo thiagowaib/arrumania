@@ -8,13 +8,22 @@ public class src_GameManager : MonoBehaviour
     public GameObject PlayerCamera;
     public GameObject Timer;
     public int time;
+    public src_DeliveryArea scriptDeliveryArea;
     private int startingTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(time <= 0) { time = 65; }
-        startingTime = time;
+        scriptDeliveryArea = FindObjectOfType<src_DeliveryArea>();
+    }
+
+    
+
+    public void Play(int duration = 60)
+    {
+        scriptDeliveryArea.ChangeCamera(1);
+        startingTime = duration;
+        time = duration;
         TimerTick();
         InvokeRepeating("TimerTick", 0, 1.0f);
     }
